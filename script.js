@@ -1,23 +1,34 @@
-const grid=document.querySelector(".flex-grid");
-const btn=document.querySelector(".btn");
+const grid=document.querySelector('.grid');
+const bgInputColor=document.querySelector('#bgcolor');
+const newButton=document.querySelector('.new');
 
-
-btn.addEventListener('click',()=>{
-    const gridSize=prompt("Enter a value between 1-100");
-    if (gridSize<100){
-        reset();
-        createGrid(gridSize*gridSize);
-        const cells=document.querySelectorAll(".cell");
-        cells.forEach((item)=>{
-            item.addEventListener('mouseover',()=>{
-                item.classList.add('blacked');
-            })
-        })
-    }else {
-        alert("Please enter value between 1 and 100");
-        return;
-    }
+window.addEventListener('load',()=>{
+    createGrid(16,16);
+    updateGridBgColor();
+    
+    
 })
+
+function createGrid (row,column){
+    let total=row*column;
+    console.log("hey");
+    for (let i=0;i<total;i++){
+        const cell=document.createElement('div');
+        cell.classList.add('grid-line');
+        console.log(i);
+        grid.appendChild(cell);
+    }
+}
+
+function updateGridBgColor (){
+    bgInputColor.addEventListener('input',(e)=>{
+            const cells=document.querySelectorAll('.cell');
+            cells.forEach((cell)=>{
+            cell.style.backgroundColor=e.target.value;
+        })
+    });
+}
+
 
 function reset(){
     while(grid.hasChildNodes()){
