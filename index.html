@@ -9,12 +9,46 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <div class="toolbar">
             <h2 class="logo">Etch A Sketch</h2>
-            <button class="btn">New Sketch</button>
+            <div class="tool">
+                <div class="colors-section">
+                    <div class="bg-color">
+                        <input id="bgcolor" name="bgcolor" value="#EEEEEE" type="color">
+                        <p>BG Color</p>
+                    </div>
+                    <div class="pen-color">
+                        <input id="pencolor" name="pencolor" value="#4ECCA3" type="color">
+                        <p>Pen Color</p>
+                    </div>
+                </div>
+                <button class="btn">New Sketch</button>
+                <button class="btn">Color Fill Mode</button>
+                <button class="btn">Rainbow Mode</button>
+                <button class="btn">Eraser</button>
+                <button class="btn">Clear</button>
+            </div>
         </div>
-        <div class="flex-grid"></div>
+        <div class="grid">
+            <div class="blacked">1</div>
+            <div class="blacked">2</div>
+            <div class="blacked">3</div>
+            <div class="blacked">4</div>
+            <div class="blacked">5</div>
+            <div class="blacked">6</div>
+            <div class="blacked">7</div>
+            <div class="blacked">8</div>
+            <div class="blacked">1</div>
+            <div class="blacked">2</div>
+            <div class="blacked">3</div>
+            <div class="blacked">4</div>
+            <div class="blacked">5</div>
+            <div class="blacked">6</div>
+            <div class="blacked">7</div>
+            <div class="blacked">8</div>
+        </div>
     </div>
+    <footer>© 2023 Amini</footer>
     <script src="./script.js"></script>
 </body>
 </html>
