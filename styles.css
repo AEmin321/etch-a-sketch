@@ -16,7 +16,7 @@ body{
 }
 
 .grid-line {
-    border: 1px solid black;
+    border: 0.5px solid gray;
 }
 
 .toolbar {
@@ -42,9 +42,19 @@ body{
 }
 
 .cell {
-    margin: 1px;
-    flex: 1 1 auto;
-    min-width: 5%;
+    margin: 0;
+    padding: 0;
+}
+
+/* TOGGLE GRID BUTTON CSS */
+.toggle-grid-wrapper {
+    font-size: 15px;
+    padding: 10px;
+    color: #EEEEEE;
+}
+
+#toggle-grid {
+    cursor: pointer;
 }
 
 .grid {
