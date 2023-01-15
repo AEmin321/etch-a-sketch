@@ -5,6 +5,7 @@ const newButton=document.querySelector('.new');
 const clearButton=document.querySelector('.clear');
 const eraserButton=document.querySelector('.eraser');
 const rainbowButton=document.querySelector('.rainbow');
+const fillButton=document.querySelector('.fill');
 
 window.addEventListener('load',()=>{
     createGrid(16,16);
@@ -12,6 +13,33 @@ window.addEventListener('load',()=>{
     updateGridBgColor(cells);
     defaultSketch(cells);
 })
+
+function newSketch (){
+    let gridSize=prompt("Enter a value between 1-100 :");
+
+    grid.style.gridTemplateColumns=`repeat(${gridSize},1fr)`;
+    grid.style.gridTemplateRows=`repeat(${gridSize},1fr)`;
+    grid.innerHTML='';
+    createGrid(gridSize,gridSize);
+    const cells=document.querySelectorAll('.cell');
+    defaultSketch(cells);
+}
+
+function fillSketch (){
+    const cells=document.querySelectorAll('.cell');
+    toggle(fillButton);
+    if(fillButton.value=='ON'){
+        fillButton.classList.toggle('toggle');
+        grid.addEventListener('click',()=>{
+            cells.forEach((cell)=>{
+                cell.style.backgroundColor=penInputColor.value;
+            })
+        })
+    }else {
+        fillButton.classList.toggle('toggle');
+        defaultSketch(cells);
+    }
+}
 
 function rainbowSketch (cells){
     toggle(rainbowButton);
