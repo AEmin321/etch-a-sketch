@@ -7,6 +7,10 @@ body{
     background-color: #232931;
 }
 
+.toggle {
+    background-color: #232931 !important;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
