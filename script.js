@@ -4,12 +4,33 @@ const penInputColor=document.querySelector('#pencolor');
 const newButton=document.querySelector('.new');
 const clearButton=document.querySelector('.clear');
 const eraserButton=document.querySelector('.eraser');
+const rainbowButton=document.querySelector('.rainbow');
 
 window.addEventListener('load',()=>{
     createGrid(16,16);
     const cells=document.querySelectorAll('.cell');
     updateGridBgColor(cells);
     defaultSketch(cells);
+})
+
+function rainbowSketch (cells){
+    toggle(rainbowButton);
+    if (rainbowButton.value=='ON'){
+        rainbowButton.classList.toggle('toggle');
+        cells.forEach((cell)=>{
+            cell.addEventListener('mouseover',()=>{
+                cell.style.backgroundColor=randomColor();
+            })
+        })
+    }else {
+        rainbowButton.classList.toggle('toggle');
+        defaultSketch(cells);
+    }
+}
+
+rainbowButton.addEventListener('click',()=>{
+    const cells=document.querySelectorAll('.cell');
+    rainbowSketch(cells);
 })
 
 eraserButton.addEventListener('click',()=>{
@@ -68,6 +89,15 @@ function eraseSketch (cells){
         eraserButton.classList.toggle('toggle');
         defaultSketch(cells);
     }
+}
+
+function randomColor(){
+    const letters='0123456789ABCDEF'.split('');
+    let color='#';
+    for (let i=0;i<6;i++){
+        color+=letters[Math.round(Math.random()*15)];
+    }
+    return color;
 }
 
 function toggle (button){
