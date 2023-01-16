@@ -7,16 +7,23 @@ const eraserButton=document.querySelector('.eraser');
 const rainbowButton=document.querySelector('.rainbow');
 const fillButton=document.querySelector('.fill');
 
+const DEFAULT_GRID=16;
+
 window.addEventListener('load',()=>{
-    createGrid(16,16);
+    createGrid (DEFAULT_GRID,DEFAULT_GRID);
     const cells=document.querySelectorAll('.cell');
-    updateGridBgColor(cells);
     defaultSketch(cells);
+    updateGridBgColor(cells);
+})
+
+
+//GENERATE A NEW GRID FROM USER PROMPT
+newButton.addEventListener('click',()=>{
+    newSketch();
 })
 
 function newSketch (){
     let gridSize=prompt("Enter a value between 1-100 :");
-
     grid.style.gridTemplateColumns=`repeat(${gridSize},1fr)`;
     grid.style.gridTemplateRows=`repeat(${gridSize},1fr)`;
     grid.innerHTML='';
@@ -25,8 +32,13 @@ function newSketch (){
     defaultSketch(cells);
 }
 
-function fillSketch (){
+// FILL MODE
+fillButton.addEventListener('click',()=>{
     const cells=document.querySelectorAll('.cell');
+    fillSketch(cells);
+})
+
+function fillSketch (cells){
     toggle(fillButton);
     if(fillButton.value=='ON'){
         fillButton.classList.toggle('toggle');
@@ -40,6 +52,12 @@ function fillSketch (){
         defaultSketch(cells);
     }
 }
+
+// RAINBOW MODE
+rainbowButton.addEventListener('click',()=>{
+    const cells=document.querySelectorAll('.cell');
+    rainbowSketch(cells);
+})
 
 function rainbowSketch (cells){
     toggle(rainbowButton);
@@ -56,37 +74,10 @@ function rainbowSketch (cells){
     }
 }
 
-rainbowButton.addEventListener('click',()=>{
-    const cells=document.querySelectorAll('.cell');
-    rainbowSketch(cells);
-})
-
-eraserButton.addEventListener('click',()=>{
-    const cells=document.querySelectorAll('.cell')
-    eraseSketch(cells);
-})
-
-function defaultSketch (cells){
-    cells.forEach((cell)=>{
-        cell.addEventListener('mouseover',()=>{
-            cell.style.backgroundColor=penInputColor.value;
-        })
-    })
-}
-
-function createGrid (row,column){
-    let total=row*column;
-    for (let i=0;i<total;i++){
-        const cell=document.createElement('div');
-        cell.classList.add('cell');
-        cell.classList.toggle('grid-line');
-        grid.appendChild(cell);
-    }
-}
-
+// TOGGLE GRID LINES
 function toggleGrid(){
     const cells=document.querySelectorAll('.cell');
-    cells.forEach((cell)=>cell.classList.toggle('grid-line'))
+    cells.forEach((cell)=>cell.classList.toggle('grid-line'));
 }
 
 function updateGridBgColor (cells){
@@ -97,12 +88,11 @@ function updateGridBgColor (cells){
     });
 }
 
-function clearSketch (){
+// ERASER MODE
+eraserButton.addEventListener('click',()=>{
     const cells=document.querySelectorAll('.cell');
-    cells.forEach((cell)=>{
-        cell.style.backgroundColor=bgInputColor.value;
-    })
-}
+    eraseSketch(cells);
+})
 
 function eraseSketch (cells){
     toggle(eraserButton);
@@ -119,6 +109,18 @@ function eraseSketch (cells){
     }
 }
 
+// CLEAR THE GRID
+clearButton.addEventListener('click',()=>{
+    const cells=document.querySelectorAll('.cell');
+    clearSketch(cells);
+})
+function clearSketch (cells){
+    cells.forEach((cell)=>{
+        cell.style.backgroundColor=bgInputColor.value;
+    })
+}
+
+// GENERATING A RANDOM COLOR
 function randomColor(){
     const letters='0123456789ABCDEF'.split('');
     let color='#';
@@ -133,5 +135,23 @@ function toggle (button){
         button.value='ON';
     }else {
         button.value='OFF';
+    }
+}
+
+function defaultSketch (cells){
+    cells.forEach((cell)=>{
+        cell.addEventListener('mouseover',()=>{
+            cell.style.backgroundColor=penInputColor.value;
+        })
+    })
+}
+
+function createGrid (row,column){
+    let total=row*column;
+    for (let i=0;i<total;i++){
+        const cell=document.createElement('div');
+        cell.classList.add('cell');
+        cell.classList.toggle('grid-line');
+        grid.appendChild(cell);
     }
 }
