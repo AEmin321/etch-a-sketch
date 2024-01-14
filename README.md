@@ -1,11 +1,11 @@
 <h1 align="left">Etch A Sketch</h1>
 
-<p align="left">Etch a sketch The Odin Project.</p>
+<p align="left">Etch a sketch project part of The Odin Project.</p>
 
 ## Live Preview
 
 
-- https://aemin321.github.io/etch-a-sketch/
+https://aemin321.github.io/etch-a-sketch/
 
 
 ## Screenshots
